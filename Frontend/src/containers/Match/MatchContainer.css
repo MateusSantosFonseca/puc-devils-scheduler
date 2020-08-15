@@ -1,0 +1,14 @@
+.MatchContainer{
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.margem-header{
+    padding-top: 5%;
+}
+
+@media only screen and (max-width: 768px) {
+    .margem-header{
+        padding-top: 10%;
+    }
+  }
+

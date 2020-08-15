@@ -1,0 +1,35 @@
+.logo{
+    width: 80%;
+    border-radius: 10%;
+}
+
+p{
+    margin: 0,5 !important;
+}
+
+.lineup{
+    padding: 0px !important;
+}
+
+.label:after {
+    content: '\A';
+    white-space: pre;
+}
+
+.logos-e-lineups{
+    display: flow-root !important;
+}
+
+.logo-devils{
+    float: left;
+}
+
+.logo-adversario{
+    float: right;
+    z-index: 1001;
+}
+
+.dificuldade-cor{
+    color: rgb(240, 110, 24);
+    font-weight: bolder;
+}
