@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/puc-devils-scheduler/static/css/main.3d9ed659.chunk.css",
-    "main.js": "/puc-devils-scheduler/static/js/main.c11ec47d.chunk.js",
-    "main.js.map": "/puc-devils-scheduler/static/js/main.c11ec47d.chunk.js.map",
+    "main.css": "/puc-devils-scheduler/static/css/main.e32a4cfa.chunk.css",
+    "main.js": "/puc-devils-scheduler/static/js/main.2ebd5e8a.chunk.js",
+    "main.js.map": "/puc-devils-scheduler/static/js/main.2ebd5e8a.chunk.js.map",
     "runtime-main.js": "/puc-devils-scheduler/static/js/runtime-main.aba47767.js",
     "runtime-main.js.map": "/puc-devils-scheduler/static/js/runtime-main.aba47767.js.map",
     "static/css/2.f3cffc9e.chunk.css": "/puc-devils-scheduler/static/css/2.f3cffc9e.chunk.css",
-    "static/js/2.15fe0298.chunk.js": "/puc-devils-scheduler/static/js/2.15fe0298.chunk.js",
-    "static/js/2.15fe0298.chunk.js.map": "/puc-devils-scheduler/static/js/2.15fe0298.chunk.js.map",
+    "static/js/2.9a6a9ae6.chunk.js": "/puc-devils-scheduler/static/js/2.9a6a9ae6.chunk.js",
+    "static/js/2.9a6a9ae6.chunk.js.map": "/puc-devils-scheduler/static/js/2.9a6a9ae6.chunk.js.map",
     "index.html": "/puc-devils-scheduler/index.html",
-    "precache-manifest.4251ba35aba19f8b072846bc0c4cfe0e.js": "/puc-devils-scheduler/precache-manifest.4251ba35aba19f8b072846bc0c4cfe0e.js",
+    "precache-manifest.4ebbc0aee29b7467d1668049d145e8b9.js": "/puc-devils-scheduler/precache-manifest.4ebbc0aee29b7467d1668049d145e8b9.js",
     "service-worker.js": "/puc-devils-scheduler/service-worker.js",
     "static/css/2.f3cffc9e.chunk.css.map": "/puc-devils-scheduler/static/css/2.f3cffc9e.chunk.css.map",
-    "static/css/main.3d9ed659.chunk.css.map": "/puc-devils-scheduler/static/css/main.3d9ed659.chunk.css.map",
-    "static/js/2.15fe0298.chunk.js.LICENSE.txt": "/puc-devils-scheduler/static/js/2.15fe0298.chunk.js.LICENSE.txt"
+    "static/css/main.e32a4cfa.chunk.css.map": "/puc-devils-scheduler/static/css/main.e32a4cfa.chunk.css.map",
+    "static/js/2.9a6a9ae6.chunk.js.LICENSE.txt": "/puc-devils-scheduler/static/js/2.9a6a9ae6.chunk.js.LICENSE.txt",
+    "static/media/devils_redimensionada.png": "/puc-devils-scheduler/static/media/devils_redimensionada.9cbd964d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.aba47767.js",
     "static/css/2.f3cffc9e.chunk.css",
-    "static/js/2.15fe0298.chunk.js",
-    "static/css/main.3d9ed659.chunk.css",
-    "static/js/main.c11ec47d.chunk.js"
+    "static/js/2.9a6a9ae6.chunk.js",
+    "static/css/main.e32a4cfa.chunk.css",
+    "static/js/main.2ebd5e8a.chunk.js"
   ]
 }

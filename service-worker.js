@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/puc-devils-scheduler/precache-manifest.4251ba35aba19f8b072846bc0c4cfe0e.js"
+  "/puc-devils-scheduler/precache-manifest.4ebbc0aee29b7467d1668049d145e8b9.js"
 );
 
 self.addEventListener('message', (event) => {
