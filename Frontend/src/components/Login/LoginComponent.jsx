@@ -10,39 +10,45 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import logoPucDevils from './../../assets/devils_redimensionada.png'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://www.instagram.com/aaaepucminas/">
-        PUC-Minas Devils
-      </Link>{' '} {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+function status(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(new Error(response.statusText))
+  }
 }
 
-function Visitante() {
-  return (
-    <Typography variant="body2" color="textPrimary" align="center">
-      <Link color="inherit" href="#">
-        Entrar como visitante
-      </Link>
-    </Typography>
-  );
+function json(response) {
+  return response.json()
 }
 
-function CheckLogin(){
-  /*
+function CheckLogin() {
+  let credenciaisInseridas = JSON.stringify({login: "atokzz", senha: "atokzz321"});
+
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ login: 'atokzz', senha: 'atokzz321'})
-};
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Credentials": true
+    },
+    body: credenciaisInseridas
+  };
 
-  fetch("https://puc-devils-scheduler-api.vercel.app/api/login", requestOptions)
-      .then(res => console.log(res.json()))
-      */
+  fetch("http://localhost:3000/api/login", requestOptions)
+    .then(status)
+    .then(json)
+    .then((resposta) => {
+      if (resposta.result == true) {
+        console.log("Login certo")
+      } else {
+        console.log("Login errado")
+      }
+    })
+    .catch((error) => {
+      alert("Ocorreu algum erro na comunicação com o serviço, tente novamente mais tarde. Err" +
+          "o" + error)
+    });
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
 const LoginComponent = () => {
   const classes = useStyles();
 
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
@@ -85,7 +90,7 @@ const LoginComponent = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form,
+        <div className={classes.form,
         "mt-3"} noValidate>
           <TextField
             variant="outlined"
@@ -108,7 +113,7 @@ const LoginComponent = () => {
             id="password"
             autoComplete="current-password"/>
           <Button
-            onClick={CheckLogin()}
+            onClick={CheckLogin}
             type="submit"
             fullWidth
             variant="contained"
@@ -116,11 +121,19 @@ const LoginComponent = () => {
             className={classes.submit}>
             Entrar
           </Button>
-        </form>
-        <Visitante></Visitante>
+        </div>
+        <Typography variant="body2" color="textPrimary" align="center">
+          <Link color="inherit" href="/matches">
+            Entrar como visitante
+          </Link>
+        </Typography>
       </div>
       <Box mt={8}>
-        <Copyright/>
+        <Typography variant="body2" color="textSecondary" align="center">
+          <Link color="inherit" href="https://www.instagram.com/aaaepucminas/">
+            Instagram AAAE - PUC MG
+          </Link>
+        </Typography>
       </Box>
     </Container>
   );
