@@ -1,11 +1,13 @@
 import React from 'react'
 import './MainPage.css'
-import {LoginComponent} from 'components/Login'
+import MatchContainer from 'containers/Match/MatchContainer'
+import HeaderContainer from 'containers/Header/HeaderContainer';
+import { Link } from 'react-router-dom'
 
-{/* Talvez ter um for aqui que vai gerando uma main com varios componentes? Ver como funciona no react */ }
 const MainPage = () => (
     <React.Fragment>
-        <LoginComponent></LoginComponent>
+        <HeaderContainer></HeaderContainer>
+        <MatchContainer></MatchContainer>
     </React.Fragment>
 );
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import MainPage from './pages/MainPage/MainPage'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import LoginComponent from 'components/Login/LoginComponent';
 
 function App() {
   return (
     <div className="App">
-      <MainPage></MainPage>
+      <LoginComponent></LoginComponent>
     </div>
   );
 }

@@ -22,6 +22,29 @@ function Copyright() {
   );
 }
 
+function Visitante() {
+  return (
+    <Typography variant="body2" color="textPrimary" align="center">
+      <Link color="inherit" href="#">
+        Entrar como visitante
+      </Link>
+    </Typography>
+  );
+}
+
+function CheckLogin(){
+  /*
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ login: 'atokzz', senha: 'atokzz321'})
+};
+
+  fetch("https://puc-devils-scheduler-api.vercel.app/api/login", requestOptions)
+      .then(res => console.log(res.json()))
+      */
+}
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -42,11 +65,15 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  visitante: {
+    marginTop: '5px'
   }
 }));
 
 const LoginComponent = () => {
   const classes = useStyles();
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -81,6 +108,7 @@ const LoginComponent = () => {
             id="password"
             autoComplete="current-password"/>
           <Button
+            onClick={CheckLogin()}
             type="submit"
             fullWidth
             variant="contained"
@@ -89,6 +117,7 @@ const LoginComponent = () => {
             Entrar
           </Button>
         </form>
+        <Visitante></Visitante>
       </div>
       <Box mt={8}>
         <Copyright/>
