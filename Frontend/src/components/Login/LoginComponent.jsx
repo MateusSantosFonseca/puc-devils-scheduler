@@ -1,142 +1,163 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import logoPucDevils from './../../assets/devils_redimensionada.png'
+import React, { useState } from 'react';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Link,
+  Box,
+  Typography,
+  Container,
+  CircularProgress
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import logoPucDevils from './../../assets/devils_redimensionada.png';
+import LoginManager from './LoginManager';
+import { Alert } from '@material-ui/lab';
 
-function status(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return Promise.resolve(response)
-  } else {
-    return Promise.reject(new Error(response.statusText))
-  }
-}
+const LoginComponent = () => {
+  const classes = useStyles();
 
-function json(response) {
-  return response.json()
-}
+  const [login, setLogin] = useState('');
+  const [senha, setSenha] = useState('');
+  const [alertErroAberto, setAlertErroAberto] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
 
-function CheckLogin() {
-  let credenciaisInseridas = JSON.stringify({login: "atokzz", senha: "atokzz321"});
+  const handleLogin = async () => {
+    setLoadingLogin(true);
+    const resposta = await LoginManager.realizarLogin(login, senha);
+    setLoadingLogin(false);
 
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      "Access-Control-Allow-Credentials": true
-    },
-    body: credenciaisInseridas
+    if (resposta && resposta.sucesso && resposta.autorizado) {
+      console.log(resposta);
+      //navega pra outra tela passando dados
+    } else {
+      setAlertErroAberto(true);
+      setTimeout(() => {
+        setAlertErroAberto(false);
+      }, 5000);
+    }
+
+    setLogin('');
+    setSenha('');
   };
 
-  fetch("http://localhost:3000/api/login", requestOptions)
-    .then(status)
-    .then(json)
-    .then((resposta) => {
-      if (resposta.result == true) {
-        console.log("Login certo")
-      } else {
-        console.log("Login errado")
-      }
-    })
-    .catch((error) => {
-      alert("Ocorreu algum erro na comunicação com o serviço, tente novamente mais tarde. Err" +
-          "o" + error)
-    });
-}
+  return (
+    <>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <img src={logoPucDevils} />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Login
+          </Typography>
+          <div style={{'textAlign' : 'center'}} className={(classes.form, 'mt-3')} noValidate>
+            <TextField
+              onChange={(event) => setLogin(event.target.value)}
+              variant='outlined'
+              margin='normal'
+              required
+              fullWidth
+              id='user'
+              label='Usuário'
+              name='user'
+              value={login}
+              autoFocus
+              autoComplete='off'
+            />
+            <TextField
+              onChange={(event) => setSenha(event.target.value)}
+              variant='outlined'
+              value={senha}
+              margin='normal'
+              required
+              fullWidth
+              name='password'
+              label='Senha'
+              type='password'
+              id='password'
+              autoComplete='current-password'
+            />
+            <Button
+              onClick={handleLogin}
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              Entrar
+            </Button>
+            {loadingLogin && <CircularProgress align='center' className={classes.marginY}/>}
+          </div>
+          <Typography variant='body2' color='textPrimary' align='center'>
+            <Link color='inherit' href='/matches'>
+              Entrar como visitante
+            </Link>
+          </Typography>
+        </div>
+        <Box mt={8}>
+          <Typography variant='body2' color='textSecondary' align='center'>
+            <Link
+              color='inherit'
+              href='https://www.instagram.com/aaaepucminas/'
+            >
+              Instagram AAAE - PUC MG
+            </Link>
+          </Typography>
+        </Box>
+      </Container>
+      {alertErroAberto && (
+        <Alert
+          className={classes.alertComponent}
+          severity='error'
+          variant='filled'
+          onClose={() => {}}
+        >
+          <Typography variant='body1'>
+            Infelizmente o login falhou! Verifique os dados e tente novamente!
+          </Typography>
+        </Alert>
+      )}
+    </>
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: '#FFFFFF',
     width: 'auto',
     height: 'auto',
-    marginBottom: '7%'
+    marginBottom: '7%',
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
+  },
+  marginY: {
+    marginTop: '1%',
+    marginBottom: '3%'
   },
   visitante: {
-    marginTop: '5px'
+    marginTop: '5px',
+  },
+  alertComponent: {
+    bottom: '0',
+    position: 'absolute',
+    width: '100%',
   }
 }));
-
-const LoginComponent = () => {
-  const classes = useStyles();
-
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline/>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <img src={logoPucDevils}/>
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
-        <div className={classes.form,
-        "mt-3"} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="user"
-            label="Usuário"
-            name="user"
-            autoFocus
-            autoComplete="off"/>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Senha"
-            type="password"
-            id="password"
-            autoComplete="current-password"/>
-          <Button
-            onClick={CheckLogin}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}>
-            Entrar
-          </Button>
-        </div>
-        <Typography variant="body2" color="textPrimary" align="center">
-          <Link color="inherit" href="/matches">
-            Entrar como visitante
-          </Link>
-        </Typography>
-      </div>
-      <Box mt={8}>
-        <Typography variant="body2" color="textSecondary" align="center">
-          <Link color="inherit" href="https://www.instagram.com/aaaepucminas/">
-            Instagram AAAE - PUC MG
-          </Link>
-        </Typography>
-      </Box>
-    </Container>
-  );
-}
 
 export default LoginComponent;
